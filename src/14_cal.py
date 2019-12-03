@@ -22,3 +22,33 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+current_month = datetime.now().strftime('%B')
+current_year = datetime.now().year
+
+
+def user_calendar(data):
+    if data is None:
+        print(current_month, current_year)
+    else:
+        params = data.split(',')
+        if data.find(',') != -1:
+            if len(params[0]) > 0 and len(params[1]) > 0:
+                print(data)
+                return
+            if len(params[0]) > 0:
+                print(params[0], current_year)
+        else:
+            if len(params[0]) > 0:
+                print(params[0], current_year)
+
+
+try:
+    x = input("Enter comma-separated data in the format MM,YYYY: ").strip()
+    if not x:
+        raise ValueError
+except ValueError:
+    x = None
+
+
+user_calendar(x)
